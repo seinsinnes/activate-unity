@@ -48,10 +48,9 @@ async function licensePage_login(page, username, password, authenticatorKey) {
     await page.evaluate((x) => { document.getElementById("conversations_create_session_form_email").value = x; }, username);
     await page.evaluate((x) => { document.getElementById("conversations_create_session_form_password").value = x; }, password);
 
-    console.log("License robot. Entered creds " + username);
+    console.log("License robot. Entered creds.");
 
     var html = await page.content();
-    console.log(html);
 
     await Promise.all([
         page.click('input[name=commit]'),
@@ -59,7 +58,6 @@ async function licensePage_login(page, username, password, authenticatorKey) {
     ]);
 
     var html = await page.content();
-    console.log(html);
 
     console.log("License robot. Finished waiting");
 
