@@ -50,10 +50,16 @@ async function licensePage_login(page, username, password, authenticatorKey) {
 
     console.log("License robot. Entered creds " + username);
 
+    var html = await page.content();
+    console.log(html);
+
     await Promise.all([
         page.click('input[name=commit]'),
-        page.waitForNavigation({ waitUntil: 'networkidle0' })
+        page.waitForNavigation({ waitUntil: 'networkidle2' })
     ]);
+
+    var html = await page.content();
+    console.log(html);
 
     console.log("License robot. Finished waiting");
 
