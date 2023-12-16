@@ -43,13 +43,19 @@ async function licensePage_login(page, username, password, authenticatorKey) {
 
     await page.waitForSelector("#conversations_create_session_form_email");
 
+    console.log("License robot. Finished wait for form");
+
     await page.evaluate((x) => { document.getElementById("conversations_create_session_form_email").value = x; }, username);
     await page.evaluate((x) => { document.getElementById("conversations_create_session_form_password").value = x; }, password);
+
+    console.log("License robot. Entered creds " + username);
 
     await Promise.all([
         page.click('input[name=commit]'),
         page.waitForNavigation({ waitUntil: 'networkidle0' })
     ]);
+
+    console.log("License robot. Finished waiting");
 
     const verifyCodeInput = await page.$('#conversations_tfa_required_form_verify_code');
     if (verifyCodeInput) {
